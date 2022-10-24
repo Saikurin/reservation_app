@@ -1,37 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import {Platform, ScrollView, StyleSheet} from 'react-native';
 import * as React from 'react';
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Button, Text, View } from '../components/Themed';
-import { UserContext } from '../contexts/UserContext';
-import { RootStackScreenProps } from '../types';
+import {UserContext} from '../contexts/UserContext';
+import {RootStackScreenProps} from '../types';
+import Article from "../components/Article";
+import * as  articles from "../data/articles.json";
+import {Title} from "react-native-paper";
 
-export default function MainScreen({ navigation }: RootStackScreenProps<'Main'>) {
-  const {token} = React.useContext(UserContext);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Accueil</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {!token?
-        <Button onPress={()=>{navigation.navigate("Login")}} text="Login"/>
-      : <View/>}
-    </View>
-  );
+export default function MainScreen({navigation}: RootStackScreenProps<'Main'>) {
+    const {token} = React.useContext(UserContext);
+
+    return (
+        <ScrollView style={styles.container}>
+            <Title style={styles.title}>Dernières actualités</Title>
+            {
+                articles.map((article, key) => {
+                    return <Article article={article}/>
+                })
+            }
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+    container: {
+        flex: 1,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginVertical: 40,
+        textAlign: 'center'
+    },
+    separator: {
+        marginVertical: 30,
+        height: 1,
+        width: '80%',
+    },
 });
