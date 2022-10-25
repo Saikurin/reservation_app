@@ -2,7 +2,7 @@ import React from 'react';
 
 // Declaring the state object globally.
 const initialUserState = {
-  token: "azertjgodifsq",//localStorage.getItem("token"),
+  token: localStorage.getItem("token"),
   refeshToken: localStorage.getItem("refeshToken"),
 };
 
