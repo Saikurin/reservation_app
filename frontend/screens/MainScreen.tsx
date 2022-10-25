@@ -1,20 +1,24 @@
-import {Platform, ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import * as React from 'react';
-import {UserContext} from '../contexts/UserContext';
 import {RootStackScreenProps} from '../types';
 import Article from "../components/Article";
-import * as  articles from "../data/articles.json";
+import articles from "../data/articles.json";
 import {Title} from "react-native-paper";
+import {ArticleContext} from "../contexts/ArticleContext";
+
 
 export default function MainScreen({navigation}: RootStackScreenProps<'Main'>) {
-    const {token} = React.useContext(UserContext);
-
+    const {setArticle} = React.useContext(ArticleContext);
     return (
+
         <ScrollView style={styles.container}>
             <Title style={styles.title}>Dernières actualités</Title>
             {
                 articles.map((article, key) => {
-                    return <Article article={article}/>
+                    return <Article article={article} click={() => {
+                        setArticle(article)
+                        navigation.navigate('Article')
+                    }} key={key}/>
                 })
             }
         </ScrollView>
