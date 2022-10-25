@@ -19,11 +19,10 @@ import InscriptionScreen from '../screens/InscriptionScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import {RootStackParamList, RootTabParamList} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import {ArticleContextProvider} from "../contexts/ArticleContext";
+import ContactScreen from "../screens/ContactScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -94,19 +93,12 @@ function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
-                name="TabOne"
-                component={TabOneScreen}
+                name="Contact"
+                component={ContactScreen}
                 options={{
-                    title: 'Tab One',
-                    tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
-                }}
-            />
-            <BottomTab.Screen
-                name="TabTwo"
-                component={TabTwoScreen}
-                options={{
-                    title: 'Tab Two',
-                    tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
+                    title: 'Contact',
+                    headerShown: false,
+                    tabBarIcon: ({color}) => <TabBarIcon name="support" color={color}/>
                 }}
             />
         </BottomTab.Navigator>
