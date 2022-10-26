@@ -23,6 +23,7 @@ import {RootStackParamList, RootTabParamList} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import {ArticleContextProvider} from "../contexts/ArticleContext";
 import ContactScreen from "../screens/ContactScreen";
+import {ContactContextProvider} from "../contexts/ContactContext";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -31,8 +32,10 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <ArticleContextProvider>
                 <UserContextProvider>
+                    <ContactContextProvider>
                         <Header/>
                         <RootNavigator/>
+                    </ContactContextProvider>
                 </UserContextProvider>
             </ArticleContextProvider>
         </NavigationContainer>

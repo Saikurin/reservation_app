@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "from": "support",
-    "created_at": "2020-01-01",
-    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque imperdiet porta scelerisque. Nullam dignissim lacus non lacus feugiat, id suscipit quam vestibulum. Vivamus imperdiet tortor ut metus malesuada posuere. Integer scelerisque tellus eu diam viverra, in consectetur mi iaculis. Proin sodales sagittis felis vitae convallis. Nam scelerisque accumsan luctus. Mauris ac leo neque. Ut tristique leo nec nibh varius iaculis. Morbi porta justo aliquam nunc interdum, in suscipit massa aliquet. Duis vulputate ante velit, vel dapibus nunc consectetur ac. Mauris ultricies fringilla eros, sit amet cursus massa dignissim at. Quisque semper ipsum non purus pretium tristique. Fusce gravida et mi vel tristique. Donec iaculis dictum odio non pellentesque. Aenean dictum felis a velit vehicula, eu dapibus justo semper. Donec et cursus urna."
+    "sender": "customer",
+    "created_at": "2022-10-25 22:30:10",
+    "message": "Bonjour, je souhaite vous poser quelques questions..."
   },
   {
-    "id": 1,
-    "from": "customer",
-    "created_at": "2020-01-01",
-    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque imperdiet porta scelerisque. Nullam dignissim lacus non lacus feugiat, id suscipit quam vestibulum. Vivamus imperdiet tortor ut metus malesuada posuere. Integer scelerisque tellus eu diam viverra, in consectetur mi iaculis. Proin sodales sagittis felis vitae convallis. Nam scelerisque accumsan luctus. Mauris ac leo neque. Ut tristique leo nec nibh varius iaculis. Morbi porta justo aliquam nunc interdum, in suscipit massa aliquet. Duis vulputate ante velit, vel dapibus nunc consectetur ac. Mauris ultricies fringilla eros, sit amet cursus massa dignissim at. Quisque semper ipsum non purus pretium tristique. Fusce gravida et mi vel tristique. Donec iaculis dictum odio non pellentesque. Aenean dictum felis a velit vehicula, eu dapibus justo semper. Donec et cursus urna."
+    "id": 2,
+    "sender": "support",
+    "created_at": "2022-10-26 07:05:24",
+    "message": "Bonjour, quelles sont vos questions ? Je suis à votre disposition"
   }
 ]

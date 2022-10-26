@@ -5,14 +5,15 @@ import Layout from "../constants/Layout";
 
 export type MessageType = {
     message: string;
-    support: boolean;
+    sender: string;
+    created_at: string;
 }
 
 export default function Message(props: MessageType) {
     return (
-        <View style={props.support ? styles.messageSupport : (Platform.OS == "ios" || Platform.OS == "android" ? styles.messageCustomer : styles.messageCustomerDesktop)}>
+        <View style={props.sender == "support" ? styles.messageSupport : (Platform.OS == "ios" || Platform.OS == "android" ? styles.messageCustomer : styles.messageCustomerDesktop)}>
             <Image style={styles.image} source={{uri: "https://emilcarlsson.se/assets/mikeross.png"}}/>
-            <View style={props.support ? (Platform.OS == "ios" || Platform.OS == "android"  ? styles.containerMessageSupport : styles.containerMessageSupportDesktop) : (Platform.OS == "ios" || Platform.OS == "android" ? styles.containerMessageCustomer : styles.containerMessageCustomerDesktop)}>
+            <View style={props.sender == "support" ? (Platform.OS == "ios" || Platform.OS == "android"  ? styles.containerMessageSupport : styles.containerMessageSupportDesktop) : (Platform.OS == "ios" || Platform.OS == "android" ? styles.containerMessageCustomer : styles.containerMessageCustomerDesktop)}>
                 <Text style={styles.text}>{props.message}</Text>
             </View>
         </View>
