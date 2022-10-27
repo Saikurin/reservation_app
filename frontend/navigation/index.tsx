@@ -26,6 +26,7 @@ import ContactScreen from "../screens/ContactScreen";
 import {ContactContextProvider} from "../contexts/ContactContext";
 import CalendarScreen from "../screens/CalendarScreen";
 import {EventContextProvider} from "../contexts/EventContext";
+import ProfileScreen from "../screens/ProfileScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -115,6 +116,15 @@ function BottomTabNavigator() {
                     title: 'Contact',
                     headerShown: false,
                     tabBarIcon: ({color}) => <TabBarIcon name="support" color={color}/>
+                }}
+            />
+            <BottomTab.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    title: 'Profil',
+                    headerShown: false,
+                    tabBarIcon: ({color}) => <TabBarIcon name="user" color={color}/>
                 }}
             />
         </BottomTab.Navigator>

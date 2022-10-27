@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Declaring the state object globally.
 const initialUserState = {
-  token: "",//localStorage.getItem("token"),
+  token: "qsdsq",//localStorage.getItem("token"),
   refeshToken: ""//localStorage.getItem("refeshToken"),
 };
 
