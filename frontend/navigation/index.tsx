@@ -27,6 +27,7 @@ import {ContactContextProvider} from "../contexts/ContactContext";
 import CalendarScreen from "../screens/CalendarScreen";
 import {EventContextProvider} from "../contexts/EventContext";
 import ProfileScreen from "../screens/ProfileScreen";
+import {DeviceContextProvider} from "../contexts/DeviceContext";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -37,8 +38,10 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
                 <UserContextProvider>
                     <ContactContextProvider>
                         <EventContextProvider>
-                            <Header/>
-                            <RootNavigator/>
+                            <DeviceContextProvider>
+                                <Header/>
+                                <RootNavigator/>
+                            </DeviceContextProvider>
                         </EventContextProvider>
                     </ContactContextProvider>
                 </UserContextProvider>

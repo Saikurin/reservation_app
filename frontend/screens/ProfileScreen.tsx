@@ -1,12 +1,44 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {Platform, ScrollView, StyleSheet} from 'react-native';
 
 import {Text, View} from '../components/Themed';
 import {Button, Card, Switch, TextInput} from "react-native-paper";
-import React from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+import {DeviceContext} from "../contexts/DeviceContext";
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
 
 export default function ProfileScreen() {
+    const notificationListener = useRef();
+    const responseListener = useRef();
 
-    const [isEnabled, setIsSwitchOn] = React.useState(false);
+    const {notificationAuthorized, changeAuthorisation} = useContext(DeviceContext);
+
+    useEffect(() => {
+        registerForPushNotificationsAsync();
+
+        // @ts-ignore
+        notificationListener.current = Notifications.addNotificationReceivedListener(() => {});
+
+        // @ts-ignore
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+            console.log(response);
+        });
+
+        return () => {
+            // @ts-ignore
+            Notifications.removeNotificationSubscription(notificationListener.current);
+            // @ts-ignore
+            Notifications.removeNotificationSubscription(responseListener.current);
+        };
+    }, []);
 
     const [name, setName] = React.useState("");
     const [nameLength, setNameLength] = React.useState("0/100");
@@ -28,10 +60,10 @@ export default function ProfileScreen() {
     const [passwordRepeat, setPasswordRepeat] = React.useState("");
 
     const changeSwitch = () => {
-        if(isEnabled) {
-            // Send notification
+        changeAuthorisation();
+        if(!notificationAuthorized) {
+            schedulePushNotification("Vous avez autorisé les notifications", 0);
         }
-        setIsSwitchOn(!isEnabled);
     }
 
 
@@ -176,7 +208,7 @@ export default function ProfileScreen() {
 
                     <View style={{marginTop: 40, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                         <Switch
-                            value={isEnabled}
+                            value={notificationAuthorized}
                             onValueChange={() => changeSwitch()}
                             trackColor={{false: "#767577", true: "#81b0ff"}}
                         />
@@ -207,3 +239,47 @@ const styles = StyleSheet.create({
         width: '80%',
     },
 });
+
+
+async function schedulePushNotification(text: string, waitInSecond: number) {
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: "MyCoach 💪",
+            body: text,
+            data: {},
+        },
+        trigger: { seconds: waitInSecond +1 },
+    });
+}
+
+async function registerForPushNotificationsAsync() {
+    let token;
+
+    if (Platform.OS === 'android') {
+        await Notifications.setNotificationChannelAsync('default', {
+            name: 'default',
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: '#FF231F7C',
+        });
+    }
+
+    if (Device.isDevice) {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== 'granted') {
+            const { status } = await Notifications.requestPermissionsAsync();
+            finalStatus = status;
+        }
+        if (finalStatus !== 'granted') {
+            alert('Failed to get push token for push notification!');
+            return;
+        }
+        token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log(token);
+    } else {
+        alert('Must use physical device for Push Notifications');
+    }
+
+    return token;
+}
