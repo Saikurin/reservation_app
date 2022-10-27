@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "dateStart": "2022-10-25 15:00:00",
+    "status": "Confirmé",
+    "services": [
+      {
+        "name": "Cardio",
+        "quantity": 1,
+        "time": 1
+      },
+      {
+        "name": "Santé",
+        "quantity": 1,
+        "time": 0.5
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "dateStart": "2022-10-25 17:00:00",
+    "status": "En attente",
+    "services": [
+      {
+        "name": "Cours Collectif",
+        "quantity": 1,
+        "time": 1
+      },
+      {
+        "name": "Prise de poids",
+        "quantity": 1,
+        "time": 0.5
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "dateStart": "2022-10-25 21:00:00",
+    "status": "Annulé",
+    "services": [
+      {
+        "name": "Perte de poids",
+        "quantity": 1,
+        "time": 1
+      },
+      {
+        "name": "Prise de poids",
+        "quantity": 1,
+        "time": 0.5
+      }
+    ]
+  }
+]
