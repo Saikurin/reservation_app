@@ -1,4 +1,4 @@
-import {View} from "./Themed";
+import {Button, View} from "./Themed";
 import * as React from 'react';
 import {Card, Paragraph} from "react-native-paper";
 import {NativeSyntheticEvent, StyleSheet} from 'react-native';
@@ -24,19 +24,24 @@ export default function Article(props: ArticleProps) {
     }, []);
 
     return (
-        <View>
+        <View style={{backgroundColor: 'transparent'}}>
             <Card style={style.Card} onPress={props.click}>
                 <Card.Cover source={{uri: props.article.image}}/>
                 <Card.Content>
                     <Paragraph onTextLayout={onTextLayout} numberOfLines={textShown ? undefined : 4}
-                               style={{lineHeight: 21}}>{props.article.text}</Paragraph>
+                               style={{lineHeight: 25, marginVertical: 20}}>{props.article.text}</Paragraph>
                     {
-                        lengthMore ? <Paragraph
+                        lengthMore ? <Button
                                 onPress={toggleNumberOfLines}
                                 style={{
-                                    lineHeight: 21,
-                                    marginTop: 10
-                                }}>{textShown ? 'Read less...' : 'Read more...'}</Paragraph>
+                                    marginTop: 10,
+                                    backgroundColor: 'black',
+                                    width: 80,
+                                    height: 40,
+                                    borderRadius: 20,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }} text={textShown ? 'Voir moins' : 'Voir plus'}/>
                             : null
                     }
                 </Card.Content>
@@ -48,5 +53,7 @@ export default function Article(props: ArticleProps) {
 const style = StyleSheet.create({
     Card: {
         marginBottom: 40,
+        marginHorizontal: 20,
+        borderRadius: 5
     }
 })
