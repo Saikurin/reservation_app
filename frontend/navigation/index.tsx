@@ -20,6 +20,8 @@ import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import PasswordOublieScreen from '../screens/PasswordOublieScreen';
+import PriseRdvScreen from '../screens/PriseRdvScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { login } from '../services/AuthService';
@@ -54,6 +56,8 @@ function RootNavigator() {
         <Stack.Screen name="Article" component={ArticleScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Inscription" component={InscriptionScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="PasswordOublie" component={PasswordOublieScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="PriseRdv" component={PriseRdvScreen} options={{ headerShown: false }} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       </Stack.Navigator>
     );

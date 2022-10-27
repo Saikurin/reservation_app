@@ -1,18 +1,19 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 
 // Declaring the state object globally.
 const initialUserState = {
-  token: localStorage.getItem("token"),
-  refeshToken: localStorage.getItem("refeshToken"),
+  token: "",
+  refeshToken: "",
 };
 
 const userContextWrapper = (component?: React.Component) => ({
   ...initialUserState,
-  setTokens: (token: string, refeshToken: string) => {
+  setTokens:async (token: string, refeshToken: string) => {
     initialUserState.token = token;
     initialUserState.refeshToken = refeshToken;
-    localStorage.setItem("token", token)
-    localStorage.setItem("refeshToken", refeshToken)
+    await AsyncStorage.setItem("token", token)
+    await AsyncStorage.setItem("refeshToken", refeshToken)
     component?.setState({ context: userContextWrapper(component) });
   },
   removeTokens: () => {

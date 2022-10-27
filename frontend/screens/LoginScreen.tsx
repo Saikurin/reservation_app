@@ -6,6 +6,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import { Link } from '@react-navigation/native';
 
 export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
   return (
@@ -39,8 +40,8 @@ style={{marginTop:15}}>
 </form>
 
 
-<Text  style= {{marginTop:30, textAlign:'center', fontWeight:'bold' }}>pas de compte, creer un compte</Text>
-<Text  style= {{marginTop:15 ,marginBottom:15,textAlign:'center', fontWeight:'bold'}}>Mot de passe oublie ?</Text>
+<Link to={{ screen: 'Inscription'}} style= {{marginTop:30, textAlign:'center', fontWeight:'bold'  }}>pas de compte, creer un compte</Link>
+<Link to={{screen:'PasswordOublie'}}  style= {{marginTop:15 ,marginBottom:15,textAlign:'center', fontWeight:'bold'}}>Mot de passe oublie ?</Link>
 </Card.Content>
 </Card>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
