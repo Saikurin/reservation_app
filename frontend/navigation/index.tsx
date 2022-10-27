@@ -103,7 +103,7 @@ function BottomTabNavigator() {
                 name="Calendar"
                 component={CalendarScreen}
                 options={{
-                    title: 'Contact',
+                    title: 'Rendez-vous',
                     headerShown: false,
                     tabBarIcon: ({color}) => <TabBarIcon name="calendar" color={color}/>
                 }}

@@ -27,6 +27,7 @@ export default function Article(props: ArticleProps) {
         <View style={{backgroundColor: 'transparent'}}>
             <Card style={style.Card} onPress={props.click}>
                 <Card.Cover source={{uri: props.article.image}}/>
+                <Card.Title title={props.article.title} style={{marginTop: 20}} />
                 <Card.Content>
                     <Paragraph onTextLayout={onTextLayout} numberOfLines={textShown ? undefined : 4}
                                style={{lineHeight: 25, marginVertical: 20}}>{props.article.text}</Paragraph>
