@@ -24,6 +24,8 @@ import LinkingConfiguration from './LinkingConfiguration';
 import {ArticleContextProvider} from "../contexts/ArticleContext";
 import ContactScreen from "../screens/ContactScreen";
 import {ContactContextProvider} from "../contexts/ContactContext";
+import CalendarScreen from "../screens/CalendarScreen";
+import {EventContextProvider} from "../contexts/EventContext";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -33,8 +35,10 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
             <ArticleContextProvider>
                 <UserContextProvider>
                     <ContactContextProvider>
-                        <Header/>
-                        <RootNavigator/>
+                        <EventContextProvider>
+                            <Header/>
+                            <RootNavigator/>
+                        </EventContextProvider>
                     </ContactContextProvider>
                 </UserContextProvider>
             </ArticleContextProvider>
@@ -93,6 +97,15 @@ function BottomTabNavigator() {
                     title: 'Accueil',
                     headerShown: false,
                     tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>
+                }}
+            />
+            <BottomTab.Screen
+                name="Calendar"
+                component={CalendarScreen}
+                options={{
+                    title: 'Contact',
+                    headerShown: false,
+                    tabBarIcon: ({color}) => <TabBarIcon name="calendar" color={color}/>
                 }}
             />
             <BottomTab.Screen
