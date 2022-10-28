@@ -1,5 +1,5 @@
 import { refreshToken } from "./AuthService";
-import AsyncStorage  from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const axios = require('axios');
 export const axiosApiInstance = axios.create();
@@ -7,7 +7,7 @@ export const axiosApiInstance = axios.create();
 // Request interceptor for API calls
 axiosApiInstance.interceptors.request.use(
     async (config: any )=> {
-      config.headers = { 
+      config.headers = {
         'Authorization': `Bearer ${await AsyncStorage.getItem("token")}`,
       }
       return config;

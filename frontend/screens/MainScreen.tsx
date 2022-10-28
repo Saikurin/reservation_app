@@ -1,37 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import * as React from 'react';
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Button, Text, View } from '../components/Themed';
-import { UserContext } from '../contexts/UserContext';
-import { RootStackScreenProps } from '../types';
+import {RootStackScreenProps} from '../types';
+import Article from "../components/Article";
+import articles from "../data/articles.json";
+import {IconButton, Title} from "react-native-paper";
+import {ArticleContext} from "../contexts/ArticleContext";
+import {UserContext} from "../contexts/UserContext";
 
-export default function MainScreen({ navigation }: RootStackScreenProps<'Main'>) {
-  const {token} = React.useContext(UserContext);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Accueil</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {!token?
-        <Button onPress={()=>{navigation.navigate("Login")}} text="Login"/>
-      : <View/>}
-    </View>
-  );
+
+export default function MainScreen({navigation}: RootStackScreenProps<'Main'>) {
+    const {setArticle} = React.useContext(ArticleContext);
+    const {token} = React.useContext(UserContext);
+
+    return (
+        <View style={{flex: 1}}>
+            <ScrollView style={styles.container}>
+                <Title style={styles.title}>Dernières actualités</Title>
+                {
+                    articles.map((article, key) => {
+                        return <Article article={article} click={() => {
+                            setArticle(article)
+                            navigation.navigate('Article')
+                        }} key={key}/>
+                    })
+                }
+            </ScrollView>
+            {
+                (!token) ?
+                    (<View style={{borderWidth: 1, position: 'absolute', bottom: 40, right: 40, alignSelf: 'flex-end', backgroundColor: '#000', borderRadius: 50}}>
+                        <IconButton onPress={() => navigation.navigate('Login')} icon="login" size={25} color="#FFF"/>
+                    </View>) : (<View/>)
+            }
+
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+    container: {
+        flex: 1,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginVertical: 40,
+        textAlign: 'center'
+    },
+    separator: {
+        marginVertical: 30,
+        height: 1,
+        width: '80%',
+    },
 });
