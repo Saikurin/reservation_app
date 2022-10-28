@@ -28,6 +28,8 @@ import CalendarScreen from "../screens/CalendarScreen";
 import {EventContextProvider} from "../contexts/EventContext";
 import ProfileScreen from "../screens/ProfileScreen";
 import {DeviceContextProvider} from "../contexts/DeviceContext";
+import {ReservationScreen} from "../screens/ReservationScreen";
+import PasswordOublieScreen from "../screens/PasswordOublie";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -63,8 +65,9 @@ function RootNavigator() {
             <Stack.Navigator>
                 <Stack.Screen name="Main" component={MainScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Article" component={ArticleScreen} options={{headerShown: true}}/>
-                <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
-                <Stack.Screen name="Inscription" component={InscriptionScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: true, title: 'Connexion', headerBackTitle: 'Retour'}}/>
+                <Stack.Screen name="Inscription" component={InscriptionScreen} options={{headerShown: true, title: 'Inscription', headerBackTitle: 'Retour'}}/>
+                <Stack.Screen name="PasswordOublie" component={PasswordOublieScreen} options={{headerShown: true, title: 'Mot de passe oublié', headerBackTitle: 'Retour'}}/>
                 <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
             </Stack.Navigator>
         );
@@ -72,7 +75,7 @@ function RootNavigator() {
         return (
             <Stack.Navigator>
                 <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
-                <Stack.Screen name="Article" component={ArticleScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="Article" component={ArticleScreen} options={{headerShown: true}}/>
                 <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
             </Stack.Navigator>
         );
@@ -104,10 +107,19 @@ function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
+                name="Reservation"
+                component={ReservationScreen}
+                options={{
+                    title: 'Reservations',
+                    headerShown: false,
+                    tabBarIcon: ({color}) => <TabBarIcon name="edit" color={color}/>
+                }}
+            />
+            <BottomTab.Screen
                 name="Calendar"
                 component={CalendarScreen}
                 options={{
-                    title: 'Rendez-vous',
+                    title: 'Mes rendez-vous',
                     headerShown: false,
                     tabBarIcon: ({color}) => <TabBarIcon name="calendar" color={color}/>
                 }}

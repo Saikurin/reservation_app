@@ -1,4 +1,4 @@
-type EventCalendarService = {
+export type EventCalendarService = {
     name: string;
     quantity: number;
     time: number;

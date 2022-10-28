@@ -3,15 +3,7 @@ import * as React from 'react';
 import {Card, Paragraph} from "react-native-paper";
 import {NativeSyntheticEvent, StyleSheet} from 'react-native';
 import {useCallback, useState} from "react";
-
-export type ArticleType = {
-    title: string, text: string, image: string
-}
-
-export type ArticleProps = {
-    article: ArticleType,
-    click: () => void
-}
+import {ArticleProps} from "../types/ArticleProps";
 
 export default function Article(props: ArticleProps) {
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text

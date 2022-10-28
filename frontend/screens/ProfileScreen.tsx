@@ -6,6 +6,7 @@ import React, {useContext, useEffect, useRef} from 'react';
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import {DeviceContext} from "../contexts/DeviceContext";
+import {UserContext} from "../contexts/UserContext";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -20,6 +21,7 @@ export default function ProfileScreen() {
     const responseListener = useRef();
 
     const {notificationAuthorized, changeAuthorisation} = useContext(DeviceContext);
+    const {user} = useContext(UserContext);
 
     useEffect(() => {
         registerForPushNotificationsAsync();
@@ -40,21 +42,21 @@ export default function ProfileScreen() {
         };
     }, []);
 
-    const [name, setName] = React.useState("");
-    const [nameLength, setNameLength] = React.useState("0/100");
+    const [name, setName] = React.useState(user.nom);
+    const [nameLength, setNameLength] = React.useState(user.nom.length + "/100");
 
-    const [firstname, setFirstname] = React.useState("");
-    const [firstnameLength, setFirstnameLength] = React.useState("0/100");
+    const [firstname, setFirstname] = React.useState(user.prenom);
+    const [firstnameLength, setFirstnameLength] = React.useState(user.prenom.length + "/100");
 
-    const [email, setEmail] = React.useState("");
-    const [emailLength, setEmailLength] = React.useState("0/100");
+    const [email, setEmail] = React.useState(user.email);
+    const [emailLength, setEmailLength] = React.useState(user.email.length + "/100");
 
-    const [poids, setPoids] = React.useState(0);
-    const [taille, setTaille] = React.useState("");
+    const [poids, setPoids] = React.useState(user.poids);
+    const [taille, setTaille] = React.useState(user.taille);
     const [age, setAge] = React.useState(0);
 
-    const [objectif, setObjectif] = React.useState("");
-    const [objectifLength, setObjectifLength] = React.useState("0/200");
+    const [objectif, setObjectif] = React.useState(user.objectif);
+    const [objectifLength, setObjectifLength] = React.useState(user.objectif.length + "/200");
 
     const [password, setPassword] = React.useState("");
     const [passwordRepeat, setPasswordRepeat] = React.useState("");

@@ -28,7 +28,11 @@ const eventContextWrapper = (component?: React.Component) => ({
         component?.setState({context: eventContextWrapper(component)});
     },
     addEvent: async (event: EventCalendar) => {
-        initialEventsState.events = [...initialEventsState.events, event]
+        try {
+            initialEventsState.events = [...initialEventsState.events, event]
+        } catch (e) {
+            console.log(e);
+        }
         component?.setState({context: eventContextWrapper(component)});
     }
 });

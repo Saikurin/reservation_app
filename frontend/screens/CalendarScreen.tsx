@@ -2,7 +2,6 @@ import {RootTabScreenProps} from "../types";
 import React, {useEffect} from 'react'
 import {Agenda, LocaleConfig} from "react-native-calendars/src";
 import {View} from "../components/Themed";
-import {StyleSheet} from "react-native";
 import CalendarItem from "../components/CalendarItem";
 import {EventContext} from "../contexts/EventContext";
 
@@ -94,7 +93,3 @@ export default function CalendarScreen({}: RootTabScreenProps<'Calendar'>) {
         </View>
     )
 }
-
-
-const styles = StyleSheet.create({});
-
